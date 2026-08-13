@@ -1,0 +1,119 @@
+@import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-zinc-50: #fafafa;
+    --color-zinc-100: #f5f5f5;
+    --color-zinc-200: #e5e5e5;
+    --color-zinc-300: #d4d4d4;
+    --color-zinc-400: #a3a3a3;
+    --color-zinc-500: #737373;
+    --color-zinc-600: #525252;
+    --color-zinc-700: #404040;
+    --color-zinc-800: #262626;
+    --color-zinc-900: #171717;
+    --color-zinc-950: #0a0a0a;
+
+    --color-accent: var(--color-neutral-800);
+    --color-accent-content: var(--color-neutral-800);
+    --color-accent-foreground: var(--color-white);
+
+    /*
+     * "Pertanian Lainnya" landing page palette.
+     * Namespaced under `tani-` so it never collides with Flux's own tokens above.
+     */
+    --font-display: 'Plus Jakarta Sans', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+
+    --color-tani-cream: #f5f0e8;
+    --color-tani-ink: #1a2010;
+    --color-tani-night: #0d1f0d;
+    --color-tani-forest: #1a3a14;
+    --color-tani-green: #2d6b1a;
+    --color-tani-green-hover: #3a8022;
+    --color-tani-gold: #c8a84b;
+    --color-tani-gold-hover: #b8943b;
+    --color-tani-clay: #8b4513;
+    --color-tani-leaf: #4a8c3f;
+    --color-tani-mint: #e8f5e2;
+    --color-tani-sand: #fef6e4;
+    --color-tani-steel: #1e2e3e;
+    --color-tani-moss: #2d5a1b;
+    --color-tani-bark: #6b3a10;
+    --color-tani-pine: #1a4a3a;
+
+    /*
+     * "ContentOS" CMS palette - a dark admin theme, deliberately separate from the
+     * public site's `tani-` palette and from Flux's tokens.
+     */
+    --font-cms: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-cms-mono: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --font-cms-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+
+    --color-cms-bg: #0d0f14;
+    --color-cms-surface: #13161e;
+    --color-cms-raised: #1a1e29;
+    --color-cms-border: #232736;
+    --color-cms-border-subtle: #1d2030;
+    --color-cms-text: #e8eaf2;
+    --color-cms-text-2: #8b91a8;
+    --color-cms-text-3: #565d78;
+    --color-cms-accent: #6c6fff;
+    --color-cms-accent-soft: #6c6fff22;
+    --color-cms-green: #34d399;
+    --color-cms-green-soft: #34d39918;
+    --color-cms-amber: #f59e0b;
+    --color-cms-amber-soft: #f59e0b18;
+    --color-cms-red: #f87171;
+    --color-cms-red-soft: #f8717118;
+}
+
+@layer theme {
+    .dark {
+        --color-accent: var(--color-white);
+        --color-accent-content: var(--color-white);
+        --color-accent-foreground: var(--color-neutral-800);
+    }
+}
+
+@layer base {
+
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+/* Keep Alpine-controlled elements hidden until Alpine boots. */
+[x-cloak] {
+    display: none !important;
+}
+
+[data-flux-field]:not(ui-radio, ui-checkbox) {
+    @apply grid gap-2;
+}
+
+[data-flux-label] {
+    @apply  !mb-0 !leading-tight;
+}
+
+input:focus[data-flux-control],
+textarea:focus[data-flux-control],
+select:focus[data-flux-control] {
+    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
+
+/* \[:where(&)\]:size-4 {
+    @apply size-4;
+} */
