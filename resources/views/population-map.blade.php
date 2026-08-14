@@ -163,8 +163,12 @@
                         const data = await response.json();
 
                         const counts = data.features.map(f => f.properties.count);
-                        const min = Math.min(...counts);
-                        const max = Math.max(...counts);
+                        let min = counts[0];
+                        let max = counts[0];
+                        for (let i = 1; i < counts.length; i++) {
+                            if (counts[i] < min) min = counts[i];
+                            if (counts[i] > max) max = counts[i];
+                        }
                         this.legend = this.buildLegend(min, max);
 
                         this.layer = L.geoJSON(data, {
